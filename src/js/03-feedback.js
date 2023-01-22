@@ -16,6 +16,20 @@ function onInput(evt) {
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 
+function onUpdate() {
+    const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    if (savedData) {
+        formData = savedData
+        // console.log(savedData)
+        if (savedData.email) {
+            form.elements.email.value = savedData.email;
+        }
+        if (savedData.message) {
+            form.elements.message.value = savedData.message;
+        }
+    }
+};
+
 function onSubmit(evt) {
     evt.preventDefault()
     const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
@@ -24,17 +38,3 @@ function onSubmit(evt) {
     form.reset()
     formData = {}
 }
-
-function onUpdate() {
-    if (localStorage.getItem(LOCALSTORAGE_KEY) === null) {
-        return
-    }
-    const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-    console.log(savedData)
-    if (savedData.email) { 
-    form.elements.email.value = savedData.email;
-    }
-    if (savedData.message) {
-    form.elements.message.value = savedData.message;
-    }
-};
