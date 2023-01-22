@@ -1,4 +1,5 @@
 import throttle from 'lodash.throttle';
+import Notiflix from 'notiflix';
 
 const form = document.querySelector(".feedback-form")
 // console.log(form)
@@ -32,9 +33,13 @@ function onUpdate() {
 
 function onSubmit(evt) {
     evt.preventDefault()
-    const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-    console.log(savedData)
+    // const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    if (form.elements.email.value === "" || form.elements.message.value === "") {
+        return Notiflix.Notify.info("Please, fill in all the fields!");
+      };
+    console.log(formData)
     localStorage.removeItem(LOCALSTORAGE_KEY)
     form.reset()
     formData = {}
 }
+
