@@ -15,11 +15,11 @@ const markup = galleryItems.map(item =>
 </a>`).join("")
 
 imageGallery.insertAdjacentHTML('beforeend', markup)
+var lightbox = new SimpleLightbox('.gallery a', {scrollZoom:false, captionsData:"alt", captionDelay:250});
 imageGallery.addEventListener("click", onClick)
 
 console.log(SimpleLightbox)
 
 function onClick(event) {
     event.preventDefault();
-    var lightbox = new SimpleLightbox('.gallery a', {scrollZoom:false, captionsData:"alt", captionDelay:250});
 }
